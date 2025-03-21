@@ -223,6 +223,8 @@ def warn_preview_feature(name: str) -> None:
 
 def warn_deprecated_feature(name: str) -> None:
     """Warn the user when they use a deprecated feature."""
+    if os.environ.get("FLWR_SUPRESS_DEPRECATION_WARNINGS"):
+        return
     log(
         WARN,
         """DEPRECATED FEATURE: %s
@@ -238,6 +240,8 @@ def warn_deprecated_feature_with_example(
     deprecation_message: str, example_message: str, code_example: str
 ) -> None:
     """Warn if a feature is deprecated and show code example."""
+    if os.environ.get("FLWR_SUPRESS_DEPRECATION_WARNINGS"):
+        return
     log(
         WARN,
         """DEPRECATED FEATURE: %s
